@@ -1,6 +1,6 @@
-**# Sparse Neuroimaging Interpolation & In-Painting**
+# **Sparse Neuroimaging Interpolation & In-Painting**
 
-**## sEEG and Gene Expression Data**
+## **sEEG and Gene Expression Data**
 
 This repository presents a comparative study of **statistical and machine learning methods** for interpolating and in-painting **sparse neuroimaging data**, focusing on two challenging modalities:
 
@@ -12,7 +12,7 @@ The work benchmarks classical and modern approaches, evaluating not only numeric
 
 ---
 
-**## Project Overview**
+## **Project Overview**
 
 Sparse neuroimaging datasets provide valuable functional and molecular insights but suffer from limited spatial coverage. Interpolation is therefore required to reconstruct dense representations that support analysis, visualisation, and downstream clinical or neuroscientific applications.
 
@@ -28,7 +28,7 @@ This project evaluates and compares:
 
 A key outcome of this study is that **simpler classical methods can outperform deep learning models** in sparse neuroimaging settings, particularly when anatomical plausibility and robustness are prioritised over raw numerical metrics.
 
-**## Key Findings**
+## **Key Findings**
 
 **3D U-Net**
 
@@ -52,14 +52,14 @@ These results highlight the importance of benchmarking advanced models against s
 
 ---
 
-**# Methods**
-**## Datasets**
+# **Methods**
+## **Datasets**
 
 **- sEEG:** Intracranial EEG atlas with electrode coordinates in MNI space and band power features (Delta–Gamma)
 
 **- Gene Expression:** Allen Human Brain Atlas microarray samples mapped to MNI coordinates
 
-**## Models**
+## **Models**
 
 **- Kriging:** 3D Ordinary Kriging using PyKrige with multiple variogram models
 
@@ -67,7 +67,7 @@ These results highlight the importance of benchmarking advanced models against s
 
 **- 3D U-Net:** Volumetric in-painting architecture with encoder–decoder structure, residual bottlenecks, and attention modules (CBAM)
 
-**## Evaluation**
+## **Evaluation**
 
 - 10-fold cross-validation
 - Data augmentation:
@@ -83,7 +83,7 @@ These results highlight the importance of benchmarking advanced models against s
 
 ---
 
-**## Repository Structure**
+## **Repository Structure**
 
 sparse-neuroimaging-interpolation/
 ├── src/ Model implementations (Kriging, MLP, U-Net, evaluation)
@@ -96,7 +96,7 @@ sparse-neuroimaging-interpolation/
 
 --- 
 
-**## Report**
+## **Report**
 
 **Full project report:**
 Evaluating Interpolation and In-Painting Techniques for Sparse Neuroimaging Data Using Statistical and Machine Learning Approaches (PDF)
@@ -110,7 +110,7 @@ The report includes:
 
 ---
 
-**## Getting Started**
+## **Getting Started**
 **Installation**
 
 pip install -r requirements.txt
@@ -123,7 +123,7 @@ python experiments/run_experiments.py --config experiments/configs/example.yaml
 
 ---
 
-**## Tech Stack**
+## **Tech Stack**
 - Python
 - NumPy, SciPy, Pandas
 - PyTorch
@@ -134,7 +134,7 @@ python experiments/run_experiments.py --config experiments/configs/example.yaml
 
 ---
 
-**## Author**
+## **Author**
 
 **Andrea Walker Perez**
 MSc Healthcare Technologies (AI & Medical Robotics)
@@ -142,7 +142,7 @@ King’s College London
 
 ---
 
-**## Notes**
+## **Notes**
 
 This repository is intended as a **research and portfolio project**.
 It prioritises clarity, reproducibility, and honest evaluation over model complexity.
