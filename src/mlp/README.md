@@ -37,7 +37,6 @@ python src/mlp/scripts/run_cv.py \
 ```
 ### Gene example (GRIA1)
 ```bash
-Copy code
 python src/mlp/scripts/run_cv.py \
   --coords_file data/expression/expression_coords.npy \
   --values_file data/expression/expression.npy \
@@ -59,6 +58,44 @@ python src/mlp/scripts/train_full.py \
   --tag seeg_delta \
   --device cpu
 ```
+---
+
+## Dense prediction + brain slice figures (convex hull)
+
+To generate dense “in-painted” predictions on a 3D grid (masked to the convex hull of the sparse points) and save slice plots to `results/figures/`, run:
+
+### 1) Train a checkpoint (full dataset)
+
+```bash
+python src/mlp/scripts/train_full.py \
+  --coords_file data/seeg/coords.npy \
+  --values_file data/seeg/band_powers.npy \
+  --values_key Delta \
+  --tag seeg_delta \
+  --device cpu
+```
+This saves:
+- `results/models/mlp/seeg_delta.pt`
+- `results/models/mlp/seeg_delta_scaler.npz`
+
+### 2) Run dense prediction + save figures
+```bash
+python src/mlp/scripts/run_dense.py \
+  --coords_file data/seeg/coords.npy \
+  --values_file data/seeg/band_powers.npy \
+  --values_key Delta \
+  --model_path results/models/mlp/seeg_delta.pt \
+  --scaler_path results/models/mlp/seeg_delta_scaler.npz \
+  --tag mlp_seeg_delta \
+  --res 40 --axis z --n_slices 6
+```
+Outputs:
+- `results/figures/mlp_seeg_delta_sparse_points.png`
+- `results/figures/mlp_seeg_delta_pred_slices_z.png`
+
+Notes:
+- `run_dense.py` uses the shared convex-hull grid utilities in `src/evaluation/spatial_viz.py`.
+- Make sure `--hidden`, `--depth`, and `--dropout` match the settings used when training the checkpoint (defaults are 128 / 4 / 0.0).
 ---
 ## Augmentation options
 You can augment training data using:
