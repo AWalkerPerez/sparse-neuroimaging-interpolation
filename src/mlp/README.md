@@ -50,7 +50,6 @@ This trains an MLP on the full dataset and saves a checkpoint:
 - results/models/mlp/<tag>.pt
 - results/models/mlp/<tag>_scaler.npz
 ```bash
-Copy code
 python src/mlp/scripts/train_full.py \
   --coords_file data/seeg/coords.npy \
   --values_file data/seeg/band_powers.npy \
