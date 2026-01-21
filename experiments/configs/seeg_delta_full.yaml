@@ -1,1 +1,47 @@
+dataset:
+  coords_file: data/seeg/coords.npy
+  values_file: data/seeg/band_powers.npy
+  values_key: Delta
+
+cv:
+  splits: 10
+  seed: 42
+
+methods:
+  - name: kriging
+    variograms: [exponential, gaussian, spherical]
+
+  - name: mlp
+    # you can run multiple variants in one go
+    variants:
+      - name: none
+        aug: none
+      - name: jitter
+        aug: jitter
+        jitter_std: 0.5
+      - name: noise
+        aug: noise
+        noise_std: 0.01
+      - name: jitter_noise
+        aug: jitter_noise
+        jitter_std: 0.5
+        noise_std: 0.01
+    hidden: 128
+    depth: 4
+    epochs: 300
+    batch_size: 128
+    lr: 0.001
+    device: cpu
+
+  # optional (heavy)
+  # - name: unet
+  #   step: 4
+  #   splits: 5
+  #   base: 16
+  #   epochs: 200
+  #   hide_frac: 0.2
+  #   device: cpu
+
+output:
+  tag: seeg_delta_full
 
