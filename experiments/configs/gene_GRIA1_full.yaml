@@ -1,1 +1,51 @@
+# experiments/configs/gene_GRIA1_full.yaml
+
+dataset:
+  coords_file: data/expression/expression_coords.npy
+  values_file: data/expression/expression.npy
+  values_key: GRIA1
+
+cv:
+  splits: 10
+  seed: 42
+
+methods:
+  - name: kriging
+    variograms: [exponential, gaussian, spherical]
+
+  - name: mlp
+    # run multiple augmentation variants in one go
+    variants:
+      - name: none
+        aug: none
+      - name: jitter
+        aug: jitter
+        jitter_std: 0.5
+      - name: noise
+        aug: noise
+        noise_std: 0.01
+      - name: jitter_noise
+        aug: jitter_noise
+        jitter_std: 0.5
+        noise_std: 0.01
+    hidden: 128
+    depth: 4
+    dropout: 0.0
+    lr: 0.001
+    epochs: 300
+    batch_size: 128
+    weight_decay: 0.0
+    device: cpu
+
+  # optional (heavy)
+  # - name: unet
+  #   step: 4
+  #   splits: 5
+  #   base: 16
+  #   epochs: 200
+  #   hide_frac: 0.2
+  #   device: cpu
+
+output:
+  tag: gene_GRIA1_full
 
