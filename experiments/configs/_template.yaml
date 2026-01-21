@@ -1,0 +1,35 @@
+dataset:
+  coords_file: data/...
+  values_file: data/...
+  values_key: null   # e.g. Delta or GRIA1 (set to null if values_file is a plain array)
+
+cv:
+  splits: 10
+  seed: 42
+
+methods:
+  - name: kriging
+    variograms: [exponential, gaussian, spherical]
+
+  - name: mlp
+    variants:
+      - name: none
+        aug: none
+    hidden: 128
+    depth: 4
+    dropout: 0.0
+    lr: 0.001
+    epochs: 300
+    batch_size: 128
+    device: cpu
+
+  # - name: unet
+  #   step: 4
+  #   splits: 5
+  #   base: 16
+  #   epochs: 200
+  #   hide_frac: 0.2
+  #   device: cpu
+
+output:
+  tag: my_experiment_tag
